@@ -1,0 +1,32 @@
+.userMessage{
+	border-bottom: 1px solid #000;
+	padding-bottom: 15px;
+}
+.formData{
+	display: flex;
+	flex-direction: column;
+}
+.headTitle{
+	text-align: center;
+}
+.userMessage,.formData,.formBlock{
+	width: 500px;
+	margin: 0 auto;
+}
+.buttonForm{
+	background-color: #000;
+	color: #FFF;
+	height: 55px;
+	margin-top: 30px;
+}
+.labelForm{
+	margin-top: 20px;
+}
+.blockMessages{
+	margin-top: 90px;
+}
+textarea{
+	min-width: 500px;
+	max-width: 600px;
+	min-height: 75px;
+}

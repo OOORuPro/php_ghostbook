@@ -26,40 +26,7 @@
 	<head>
 		<meta charset ="UTF-8">
 		<title>Гостевая книга</title>
-		<style type="text/css">
-			.userMessage{
-				border-bottom: 1px solid #000;
-			}
-			.formData{
-				display: flex;
-				flex-direction: column;
-			}
-			.headTitle{
-				text-align: center;
-			}
-			.userMessage,.formData,.formBlock{
-				width: 500px;
-				margin: 0 auto;
-			}
-			.buttonForm{
-				background-color: #000;
-				color: #FFF;
-				height: 55px;
-				margin-top: 30px;
-			}
-			.labelForm{
-				margin-top: 20px;
-			}
-			.blockMessages{
-				margin-top: 90px;
-			}
-			textarea{
-				min-width: 500px;
-				max-width: 600px;
-				min-height: 75px;
-			}
-
-		</style>
+		<link rel="stylesheet" href="style.css">
 	</head>
 	<body>
 		<div class="formBlock">
@@ -89,6 +56,7 @@
 				<p>Имя: <?= $item['name']  ?></p>
 				<p>Email: <?= $item['email']  ?></p>
 				<p>Текст: <?= $item['message']  ?></p>
+				<p>Дата: <?= date("m/d/Y H:i:s", $item['date'])  ?></p>
 				<a href="?action=delete&id=<?= $item['id'] ?>">Удалить запись</a>
 			</div>
 			</hr>

@@ -26,7 +26,7 @@
 		 $message = nl2br(htmlspecialchars (mysqli_real_escape_string($link,$message)));
 		 $email = mysqli_real_escape_string($link,$email);
 
-		 db_query("INSERT INTO ghost_table (name,email,message) VALUES ('{$name}','{$email}','{$message}')",$link) or die("Ошибка INSERT INTO");
+		 db_query("INSERT INTO ghost_table (name,email,message,date) VALUES ('{$name}','{$email}','{$message}',".time().")",$link) or die("Ошибка INSERT INTO");
 		 header('Location: ./?page=1');
 		}else{
 			print($error);
