@@ -10,38 +10,32 @@
 		return $result;
 	}
 	
-	function db_query_ex($query,$link){
-		$values = func_get_args();
-		array_shift($values);
-		$i = 0;
-		$var_dump($query);
-		return db_query($query,$link);
-	}
-	
 	function ghostbook_add($name,$email,$message,$error,$link){
-		$error = '';
+		$error = [];
 		if(empty($name)){
-			$error['name'] - "Это обязательное поле";
+			$error['name'] = "Это обязательное поле";
 		}
 		elseif(empty($message)){
-			$error['message'] - "Это обязательное поле";
+			$error['message'] = "Это обязательное поле";
 		}
-		elseif(empty($email) && !strings_isemail($email)){
-			$error['email'] - "Это не похоже на эл. почту.";
+		elseif(empty($email)){
+			$error['email'] = "Это не похоже на эл. почту.";
 		}
-		if(!error){
-		 $name = mysqli_real_escape_string(strings_clear($name));
-		 $message = nl2br(htmlspecialchars (mysqli_real_escape_string(strings_clear($message))));
-		 $email = mysqli_real_escape_string($email);
-		 
-		 db_query_ex('INSERT INTO ghost_table (name,email,message,datetime) VALUES('.$name.','.$email.','.$message.','.NOW().')',$link);
+		if(!$error){
+		 $name = mysqli_real_escape_string($link,$name);
+		 $message = nl2br(htmlspecialchars (mysqli_real_escape_string($link,$message)));
+		 $email = mysqli_real_escape_string($link,$email);
+
+		 db_query("INSERT INTO ghost_table (name,email,message) VALUES ('{$name}','{$email}','{$message}')",$link) or die("Ошибка INSERT INTO");
 		 header('Location: ./?page=1');
+		}else{
+			print($error);
 		}
 		
 	}
 	
 	function ghostbook_delete($id,$link){
-		db_query_ex("DELETE FROM ghost_table WHERE id = ".$id,$link);
+		db_query("DELETE FROM ghost_table WHERE id = ".$id,$link);
 		header("Location: ./?page=1");
 	}
 	
